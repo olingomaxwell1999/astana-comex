@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import Script from "next/script"; // ✅ Import Script
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Enquirestrip from "@/components/Enquirestrip";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Astana Residence | Luxury Living in Ngara, Nairobi",
     description:
       "Premium studio and one-bedroom apartments offering luxury, convenience, and high rental yield in Ngara, Nairobi.",
-    url: "https://www.astanarezidence.com",
+    url: "https://www.astanarezidence.com", // ⚠️ Removed extra spaces
     siteName: "Astana Residence",
     images: [
       {
@@ -55,6 +56,20 @@ export default function RootLayout({
           <Footer />
         </footer>
         <WhatsAppButton />
+
+        {/* ✅ Zoho SalesIQ Initialization Script */}
+        <Script id="zoho-salesiq-init" strategy="afterInteractive">
+          {`window.$zoho=window.$zoho || {};
+          $zoho.salesiq=$zoho.salesiq||{ready:function(){}};`}
+        </Script>
+
+        {/* ✅ Zoho SalesIQ Widget Script */}
+        <Script
+          id="zsiqscript"
+          src="https://salesiq.zohopublic.com/widget?wc=siqc3cf373178f3dac5e2e10db2009795931cec75f0cd67bafb92dd9dae12fb3f11"
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   );
